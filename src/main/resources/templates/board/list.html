@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/board/list">List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/board/write">Write</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--<div>-->
+<!--  &lt;!&ndash; This script got from frontendfreecode.com &ndash;&gt;-->
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-12">-->
+<!--        <nav class="center">-->
+<!--          <div >-->
+<!--            <form role="search">-->
+<!--              <div class="input-group">-->
+<!--                <input type="text" class="form-control" />-->
+<!--                <div class="input-group-btn">-->
+<!--                  <button type="button" class="btn btn-search btn-danger">-->
+<!--                    <span class="glyphicon glyphicon-search"></span>-->
+<!--                    <span class="label-icon">Search</span>-->
+<!--                  </button>-->
+<!--                  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">-->
+<!--                    <span class="caret"></span>-->
+<!--                  </button>-->
+<!--                  <ul class="dropdown-menu pull-right" role="menu">-->
+<!--                    <li>-->
+<!--                      <a href="#">-->
+<!--                        <span class="glyphicon glyphicon-user"></span>-->
+<!--                        <span class="label-icon">Search By User</span>-->
+<!--                      </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                      <a href="#">-->
+<!--                        <span class="glyphicon glyphicon-book"></span>-->
+<!--                        <span class="label-icon">Search By Organization</span>-->
+<!--                      </a>-->
+<!--                    </li>-->
+<!--                  </ul>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </form>-->
+<!--          </div>-->
+<!--        </nav>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<table class="table table-dark table-striped">
+  <thead>
+  <tr>
+    <th>No</th>
+    <th>제목</th>
+    <th>작성자</th>
+    <th>조회수</th>
+    <th>등록일</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="board : ${boards}">
+    <td><a href="#" th:href="@{/board/{boardNo}(boardNo=${board.boardNo})}" th:text="${board.boardNo}">글 ID</a></td>
+    <td><a href="#" th:href="@{/board/{boardNo}(boardNo=${board.boardNo})}" th:text="${board.boardTitle}">제목</a></td>
+    <td th:text="${board.register}">작성자</td>
+    <td th:text="${board.regCnt}">조회수</td>
+    <td th:text="${board.regDate}">등록일</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
