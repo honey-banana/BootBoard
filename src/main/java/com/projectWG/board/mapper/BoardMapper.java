@@ -12,6 +12,22 @@ public interface BoardMapper {
 
     /**
      *
+     * @Method selectById
+     * @Author rulethecode9060
+     * @Date 2023.05.30
+     */
+    Optional<Board> selectByNo(int boardNo);
+
+    /**
+     *
+     * @Method increaseRegCount
+     * @Author rulethecode9060
+     * @Date 2023.05.30
+     */
+    void increaseRegCount(int boardNo);
+
+    /**
+     *
      * @Method selectAllWithKeyword
      * @Author rulethecode9060
      * @Date 2023.05.30

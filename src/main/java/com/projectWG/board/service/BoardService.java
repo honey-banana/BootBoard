@@ -21,9 +21,22 @@ public class BoardService {
      * @Author rulethecode9060
      * @Date 2023.05.30
      */
+    @Transactional
+    public Board readByBoardNo(int boardNo){
+        Board board = boardMapper.selectByNo(boardNo).orElseThrow(()->new NullPointerException("해당 게시물이 존재하지 않습니다."));
+        boardMapper.increaseRegCount(board.getBoardNo()); // 조회수 +1
+        return board;
+    }
+
+    /**
+     *
+     * @Method readAllWithKeyword
+     * @Author rulethecode9060
+     * @Date 2023.05.30
+     */
     public List<Board> readAllWithKeyword(Criteria cri) throws Exception{
         return boardMapper.selectAllWithKeyword(cri);
-    };
+    }
 
     /**
      *
@@ -33,7 +46,7 @@ public class BoardService {
      */
     public int getBoardTotal(Criteria cri) throws Exception{
         return boardMapper.getBoardTotal(cri);
-    };
+    }
 
     /**
      *
