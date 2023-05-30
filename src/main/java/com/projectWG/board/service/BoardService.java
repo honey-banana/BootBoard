@@ -25,7 +25,6 @@ public class BoardService {
         return boardMapper.selectAllWithKeyword(cri);
     };
 
-    /* 작가 총 수 */
     /**
      *
      * @Method getBoardTotal
