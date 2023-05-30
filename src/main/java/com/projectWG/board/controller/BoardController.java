@@ -18,6 +18,19 @@ public class BoardController {
 
     /**
      *
+     * @Method readByBoardNo
+     * @Author rulethecode9060
+     * @Date 2023.05.30
+     */
+    @GetMapping("/board/{boardNo}")
+    public String readByBoardNo(@PathVariable int boardNo, Model model){
+        Board board = boardService.readByBoardNo(boardNo);
+        model.addAttribute("board", board);
+        return "board/read";
+    }
+
+    /**
+     *
      * @Method readAllWithKeyword
      * @Author rulethecode9060
      * @Date 2023.05.30
