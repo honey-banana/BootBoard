@@ -12,11 +12,19 @@ public interface BoardMapper {
 
     /**
      *
-     * @Method selectAll
+     * @Method selectAllWithKeyword
      * @Author rulethecode9060
-     * @Date 2023.05.28
+     * @Date 2023.05.30
      */
-    List<Board> selectAll();
+    List<Board> selectAllWithKeyword(Criteria cri);
+
+    /**
+     *
+     * @Method getBoardTotal
+     * @Author rulethecode9060
+     * @Date 2023.05.30
+     */
+    int getBoardTotal(Criteria cri);
 
 }
 

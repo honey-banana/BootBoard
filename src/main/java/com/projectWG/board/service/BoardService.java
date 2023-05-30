@@ -17,12 +17,23 @@ public class BoardService {
 
     /**
      *
-     * @Method readAll
+     * @Method readAllWithKeyword
      * @Author rulethecode9060
-     * @Date 2023.05.28
+     * @Date 2023.05.30
      */
-    public List<Board> readAll(){
-        return boardMapper.selectAll();
-    }
+    public List<Board> readAllWithKeyword(Criteria cri) throws Exception{
+        return boardMapper.selectAllWithKeyword(cri);
+    };
+
+    /* 작가 총 수 */
+    /**
+     *
+     * @Method getBoardTotal
+     * @Author rulethecode9060
+     * @Date 2023.05.30
+     */
+    public int getBoardTotal(Criteria cri) throws Exception{
+        return boardMapper.getBoardTotal(cri);
+    };
 
 }
