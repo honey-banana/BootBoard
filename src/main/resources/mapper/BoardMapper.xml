@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.projectWG.board.mapper.BoardMapper">
 
+    <select id="selectByNo" parameterType="int" resultType="com.projectWG.board.vo.Board">
+        SELECT
+            *
+        FROM BOARD
+        WHERE board_no = #{boardNo} AND del_yn LIKE ('N')
+    </select>
+
+    <update id="increaseRegCount" parameterType="int">
+        UPDATE
+            BOARD
+        SET
+            reg_cnt = reg_cnt + 1
+        WHERE
+            board_no = #{boardNo}
+    </update>
+
     <sql id="boardColumns">
         board_no
         , register
@@ -18,7 +34,7 @@
 
     <select id="selectAllWithKeyword" resultType="com.projectWG.board.vo.Board">
         SELECT
-        board_no, board_title, register, reg_date
+        board_no, board_title, register, reg_date, reg_cnt
         FROM BOARD
         <if test="searchType == 'title'">
             WHERE
