@@ -1,16 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.projectWG.board.mapper.BoardMapper"> <!-- BoardMapper interface 위치 -->
-<!--    <select id="selectByNo" parameterType="int" resultType="com.projectWG.board.vo.Board">-->
-<!--        SELECT-->
-<!--            *-->
-<!--        FROM BOARD-->
-<!--        WHERE board_no = #{boardNo}-->
-<!--    </select>-->
     <select id="selectAll" resultType="com.projectWG.board.vo.Board">
         SELECT
             *
         FROM BOARD
         ORDER BY board_no DESC
+    </select>
+    <select id="selectAllWithKeyword" resultType="com.projectWG.board.vo.Board">
+        SELECT
+            board_no, board_title, register, reg_date
+        FROM BOARD
+        <if test="searchType == 'title'">
+            WHERE
+            board_title
+            LIKE
+            concat('%', #{keyword}, '%')
+        </if>
+        <if test="searchType == 'register'">
+            WHERE
+            register
+            LIKE
+            concat('%', #{keyword}, '%')
+        </if>
+        ORDER BY board_no DESC
+        LIMIT #{skip}, #{amount}
+    </select>
+
+    <select id="getBoardTotal" resultType="int">
+        SELECT
+        count(*)
+        FROM
+        BOARD
+        <if test="searchType == 'title'">
+            WHERE
+            board_title
+            LIKE
+            concat('%', #{keyword}, '%')
+        </if>
+        <if test="searchType == 'register'">
+            WHERE
+            register
+            LIKE
+            concat('%', #{keyword}, '%')
+        </if>
     </select>
 </mapper>

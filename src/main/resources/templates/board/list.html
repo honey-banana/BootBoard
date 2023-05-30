@@ -30,47 +30,18 @@
     </div>
   </div>
 </nav>
-<!--<div>-->
-<!--  &lt;!&ndash; This script got from frontendfreecode.com &ndash;&gt;-->
-<!--  <div class="container">-->
-<!--    <div class="row">-->
-<!--      <div class="col-md-12">-->
-<!--        <nav class="center">-->
-<!--          <div >-->
-<!--            <form role="search">-->
-<!--              <div class="input-group">-->
-<!--                <input type="text" class="form-control" />-->
-<!--                <div class="input-group-btn">-->
-<!--                  <button type="button" class="btn btn-search btn-danger">-->
-<!--                    <span class="glyphicon glyphicon-search"></span>-->
-<!--                    <span class="label-icon">Search</span>-->
-<!--                  </button>-->
-<!--                  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">-->
-<!--                    <span class="caret"></span>-->
-<!--                  </button>-->
-<!--                  <ul class="dropdown-menu pull-right" role="menu">-->
-<!--                    <li>-->
-<!--                      <a href="#">-->
-<!--                        <span class="glyphicon glyphicon-user"></span>-->
-<!--                        <span class="label-icon">Search By User</span>-->
-<!--                      </a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                      <a href="#">-->
-<!--                        <span class="glyphicon glyphicon-book"></span>-->
-<!--                        <span class="label-icon">Search By Organization</span>-->
-<!--                      </a>-->
-<!--                    </li>-->
-<!--                  </ul>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </form>-->
-<!--          </div>-->
-<!--        </nav>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="form-inline my-2 my-lg-0">
+    <select id="search-type" class="form-select" aria-label="Default select example">
+      <option value="none" selected>검색 타입을 지정해주세요.</option>
+      <option value="title">제목</option>
+      <option value="register">작성자</option>
+    </select>
+    <input id="keyword" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchWithKeyword()">Search</button>
+  </div>
+
+</nav>
 <table class="table table-dark table-striped">
   <thead>
   <tr>
@@ -91,5 +62,71 @@
   </tr>
   </tbody>
 </table>
+
+<nav aria-label="board pagination">
+  <ul class="pagination">
+  <!-- 이전 버튼 -->
+  <th:block th:if="${pageMaker.prev}">
+    <li class="page-item">
+      <a href="javascript:void(0)" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${pageMaker.cri.makeQueryString(pageMaker.pageStart - 1)} ]])">이전</a>
+    </li>
+  </th:block>
+
+  <!-- 페이지 번호 -->
+  <th:block th:with="pageMaker = ${pageMaker}">
+    <th:block th:each="num : *{#numbers.sequence(pageMaker.pageStart, pageMaker.pageEnd)}">
+      <li class="page-item" th:classappend="${pageMaker.cri.pageNum == num} ? 'active' : ''">
+        <a href="javascript:void(0)" th:text="${num}" th:onclick="movePage([[ ${#request.requestURI} ]],[[ ${pageMaker.cri.makeQueryString(num)} ]])"></a>
+      </li>
+    </th:block>
+  </th:block>
+
+
+  <!-- 다음 버튼 -->
+  <th:block th:if="${pageMaker.next}">
+    <li class="page-item">
+      <a href="javascript:void(0)" th:onclick="movePage( [[ ${#request.requestURI} ]], [[ ${pageMaker.cri.makeQueryString(pageMaker.pageEnd + 1)} ]])">다음</a>
+    </li>
+  </th:block>
+  </ul>
+</nav>
+
+
+<script th:javascript>
+  /* ![CDATA[ */
+  /**
+   *
+   * @Method movePage
+   * @Author rulethecode9060
+   * @Date 2023.05.30
+   */
+  function movePage(uri, queryString) {
+    location.href = uri + queryString; // URI + 쿼리스트링화 된 파라미터 주소형식으로 리다이렉트
+  }
+
+  /**
+   *
+   * @Method searchWithKeyword
+   * @Author rulethecode9060
+   * @Date 2023.05.30
+   */
+  function searchWithKeyword() {
+    var searchType = document.querySelector('#search-type > option:checked').value; // 검색 타입
+    var keyword = document.querySelector("#keyword").value; // 검색 키워드
+
+
+    if(searchType == "none"){
+      alert("검색 타입을 지정해주세요.");
+      return false;
+    }
+
+    const URLSearch = new URLSearchParams(location.search); // 현재 URL의 파라미터
+    URLSearch.set('searchType', searchType); // searchType파라미터를 셀렉트 박스로 지정한 searchType으로 변경
+    URLSearch.set('keyword', keyword); // keyword파라미터를 검색창에 입력한 keyword로 변경
+    const newParam = URLSearch.toString();
+    location.href = location.pathname + '?' + newParam;
+  }
+  /* ]]*/
+</script>
 </body>
 </html>
