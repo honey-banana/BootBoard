@@ -9,13 +9,13 @@
             WHERE
             board_title
             LIKE
-            concat('%', #{keyword}, '%')
+            concat('%', #{keyword}, '%') AND del_yn LIKE ('N')
         </if>
         <if test="searchType == 'register'">
             WHERE
             register
             LIKE
-            concat('%', #{keyword}, '%')
+            concat('%', #{keyword}, '%') AND del_yn LIKE ('N')
         </if>
         ORDER BY board_no DESC
         LIMIT #{skip}, #{amount}
@@ -30,13 +30,13 @@
             WHERE
             board_title
             LIKE
-            concat('%', #{keyword}, '%')
+            concat('%', #{keyword}, '%') AND del_yn LIKE ('N')
         </if>
         <if test="searchType == 'register'">
             WHERE
             register
             LIKE
-            concat('%', #{keyword}, '%')
+            concat('%', #{keyword}, '%') AND del_yn LIKE ('N')
         </if>
     </select>
 </mapper>
