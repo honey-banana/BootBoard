@@ -18,21 +18,5 @@ public interface BoardMapper {
      */
     List<Board> selectAll();
 
-    /**
-     *
-     * @Method selectAllWithKeyword
-     * @Author rulethecode9060
-     * @Date 2023.05.30
-     */
-    List<Board> selectAllWithKeyword(Criteria cri);
-
-    /**
-     *
-     * @Method getBoardTotal
-     * @Author rulethecode9060
-     * @Date 2023.05.30
-     */
-    int getBoardTotal(Criteria cri);
-
 }
 
