@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/board/list">List</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/board/write">Write</a>
-                </li>
-            </ul>
-        </div>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/board/list">List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/board/write">Write</a>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
 <div>
+  <div class="mb-3">
+    <label for="board-title" class="form-label">제목</label>
+    <p th:text="${board.boardTitle}" type="text" class="form-control" id="board-title" placeholder="제목">
+  </div>
+  <div class="mb-3">
+    <label for="register" class="form-label">작성자</label>
+    <p th:text="${board.register}" type="text" class="form-control" id="register" placeholder="작성자">
+  </div>
+  <div class="mb-3">
+    <label for="reg-cnt" class="form-label">조회수</label>
+    <p th:text="${board.regCnt}" type="text" class="form-control" id="reg-cnt" placeholder="작성자">
+  </div>
+  <div class="mb-3">
+    <label for="contents" class="form-label">내용</label>
+    <textarea th:text="${board.contents}" class="form-control" id="contents" rows="5" readonly></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="reg-date" class="form-label">등록일자</label>
+    <p th:text="${board.regDate}" type="text" class="form-control" id="reg-date">
+  </div>
+  <th:block th:if="${board.modiDate != null}">
     <div class="mb-3">
-        <label for="board-title" class="form-label">제목</label>
-        <p th:text="${board.boardTitle}" type="text" class="form-control" id="board-title" placeholder="제목">
+      <label for="modi-date" class="form-label">수정일자</label>
+      <p th:text="${board.modiDate}" type="text" class="form-control" id="modi-date">
     </div>
-    <div class="mb-3">
-        <label for="register" class="form-label">작성자</label>
-        <p th:text="${board.register}" type="text" class="form-control" id="register" placeholder="작성자">
-    </div>
-    <div class="mb-3">
-        <label for="reg-cnt" class="form-label">조회수</label>
-        <p th:text="${board.regCnt}" type="text" class="form-control" id="reg-cnt" placeholder="작성자">
-    </div>
-    <div class="mb-3">
-        <label for="contents" class="form-label">내용</label>
-        <textarea th:text="${board.contents}" class="form-control" id="contents" rows="5" readonly></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="reg-date" class="form-label">등록일자</label>
-        <p th:text="${board.regDate}" type="text" class="form-control" id="reg-date">
-    </div>
-    <th:block th:if="${board.modiDate != null}">
-        <div class="mb-3">
-            <label for="modi-date" class="form-label">수정일자</label>
-            <p th:text="${board.modiDate}" type="text" class="form-control" id="modi-date">
-        </div>
-    </th:block>
+  </th:block>
 
 </div>
 </body>
