@@ -26,5 +26,14 @@ public interface BoardMapper {
      */
     int getBoardTotal(Criteria cri);
 
+    /**
+     *
+     * @Method insert
+     * @Author rulethecode9060
+     * @Date 2023.05.30
+     */
+    void insert(Board board);
+
+
 }
 

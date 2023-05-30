@@ -35,4 +35,14 @@ public class BoardService {
         return boardMapper.getBoardTotal(cri);
     };
 
+    /**
+     *
+     * @Method write
+     * @Author rulethecode9060
+     * @Date 2023.05.30
+     */
+    public void write(Board board){
+        boardMapper.insert(board);
+    }
+
 }
