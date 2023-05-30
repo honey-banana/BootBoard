@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.projectWG.board.mapper.BoardMapper"> <!-- BoardMapper interface 위치 -->
+<mapper namespace="com.projectWG.board.mapper.BoardMapper">
+
+    <sql id="boardColumns">
+        board_no
+        , register
+        , password
+        , board_title
+        , contents
+        , reg_cnt
+        , reg_date
+        , modi_date
+        , del_yn
+        , del_date
+    </sql>
+
+
     <select id="selectAllWithKeyword" resultType="com.projectWG.board.vo.Board">
         SELECT
         board_no, board_title, register, reg_date
@@ -39,4 +54,25 @@
             concat('%', #{keyword}, '%')
         </if>
     </select>
+
+    <insert id="insert" parameterType="com.projectWG.board.vo.Board">
+        INSERT INTO BOARD
+            (
+                register,
+                password,
+                board_title,
+                contents
+            )
+        VALUES
+            (
+                #{register},
+                #{password},
+                #{boardTitle},
+                #{contents}
+            )
+    </insert>
+
+
+
+
 </mapper>
