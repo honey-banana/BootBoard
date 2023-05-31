@@ -50,6 +50,14 @@ public interface BoardMapper {
      */
     void insert(Board board);
 
+    /**
+     *
+     * @Method deleteByNo
+     * @Author rulethecode9060
+     * @Date 2023.05.30
+     */
+    void deleteByNo(int boardNo);
+
 
 }
 

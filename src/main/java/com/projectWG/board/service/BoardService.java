@@ -58,4 +58,15 @@ public class BoardService {
         boardMapper.insert(board);
     }
 
+    /**
+     *
+     * @Method deleteByBoardNo
+     * @Author rulethecode9060
+     * @Date 2023.05.30
+     */
+    public void deleteByBoardNo(int boardNo)
+    {
+        boardMapper.deleteByNo(boardNo);
+    }
+
 }

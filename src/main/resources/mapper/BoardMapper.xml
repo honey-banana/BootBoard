@@ -6,7 +6,7 @@
         SELECT
             *
         FROM BOARD
-        WHERE board_no = #{boardNo} AND del_yn LIKE ('N')
+        WHERE board_no = #{boardNo} AND del_yn LIKE 'N'
     </select>
 
     <update id="increaseRegCount" parameterType="int">
@@ -40,14 +40,15 @@
             WHERE
             board_title
             LIKE
-            concat('%', #{keyword}, '%') AND del_yn LIKE ('N')
+            concat('%', #{keyword}, '%') AND del_yn LIKE 'N'
         </if>
         <if test="searchType == 'register'">
             WHERE
             register
             LIKE
-            concat('%', #{keyword}, '%') AND del_yn LIKE ('N')
+            concat('%', #{keyword}, '%') AND del_yn LIKE 'N'
         </if>
+        WHERE del_yn LIKE 'N'
         ORDER BY board_no DESC
         LIMIT #{skip}, #{amount}
     </select>
@@ -61,13 +62,13 @@
             WHERE
             board_title
             LIKE
-            concat('%', #{keyword}, '%') AND del_yn LIKE ('N')
+            concat('%', #{keyword}, '%') AND del_yn LIKE 'N'
         </if>
         <if test="searchType == 'register'">
             WHERE
             register
             LIKE
-            concat('%', #{keyword}, '%') AND del_yn LIKE ('N')
+            concat('%', #{keyword}, '%') AND del_yn LIKE 'N'
         </if>
     </select>
 
@@ -87,6 +88,12 @@
                 #{contents}
             )
     </insert>
+
+    <update id="deleteByNo" parameterType="int">
+        UPDATE BOARD SET del_yn = 'Y'
+        WHERE board_no = #{boardNo}
+    </update>
+
 
 
 

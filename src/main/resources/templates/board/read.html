@@ -58,6 +58,28 @@
     </div>
   </th:block>
 
+    <input type="hidden" id="board-no" th:field="*{board.boardNo}" th:value="${board.boardNo}">
+    <button type="button" th:onclick="deleteForm()">게시글 삭제</button>
+
 </div>
+
+<script th:javascript>
+  /* ![CDATA[ */
+  /**
+   *
+   * @Method deleteForm
+   * @Author rulethecode9060
+   * @Date 2023.05.30
+   */
+  function deleteForm() {
+    var boardNo = document.querySelector('#board-no').value; // 게시글 번호
+    var baseUrl = 'http://localhost:8080';
+    var deleteUrl = baseUrl + '/board/delete/' + boardNo;
+    console.log(boardNo);
+    console.log(baseUrl + '/board/delete/' + boardNo);
+    location.href = deleteUrl;
+  }
+  /* ]]*/
+</script>
 </body>
 </html>
