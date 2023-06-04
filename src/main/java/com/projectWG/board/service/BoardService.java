@@ -69,4 +69,15 @@ public class BoardService {
         boardMapper.deleteByNo(boardNo);
     }
 
+    /**
+     *
+     * @Method edit
+     * @Author rulethecode9060
+     * @Date 2023.06.04
+     */
+    public void edit(Board board)
+    {
+        boardMapper.update(board);
+    }
+
 }

@@ -58,6 +58,14 @@ public interface BoardMapper {
      */
     void deleteByNo(int boardNo);
 
+    /**
+     *
+     * @Method update
+     * @Author rulethecode9060
+     * @Date 2023.06.04
+     */
+    void update(Board board);
+
 
 }
 

@@ -118,7 +118,52 @@ public class BoardController {
                 e.printStackTrace();
             }
         }
-        return "board/list";
+        return "redirect:/board/list";
+    }
+
+    /**
+     *
+     * @Method editForm
+     * @Author rulethecode9060
+     * @Date 2023.06.04
+     */
+    @GetMapping("/board/edit/{boardNo}")
+    public String editForm(@PathVariable int boardNo, Model model){
+        Board board = boardService.readByBoardNo(boardNo);
+//        Board board = new Board();
+//        board.setBoardNo(boardNo);
+        model.addAttribute("board", board);
+        return "board/edit";
+    }
+
+    /**
+     *
+     * @Method readByBoardNo
+     * @Author rulethecode9060
+     * @Date 2023.05.30
+     */
+    @PostMapping("/board/edit")
+    public String edit(Board board, HttpServletResponse response){
+        Board data = boardService.readByBoardNo(board.getBoardNo());
+        String dataRegister = data.getRegister();
+        String dataPassword = data.getPassword();
+        String inputRegister = board.getRegister();
+        String inputPassword = board.getPassword();
+        if(dataRegister.equals(inputRegister) && dataPassword.equals(inputPassword)){
+            boardService.edit(board);
+        } else {
+            try {
+                response.setContentType("text/html; charset=utf-8");
+                PrintWriter w = response.getWriter();
+                w.write("<script>alert('"+"작성자명 혹은 패스워드가 잘못되었습니다."+"');history.go(-1);</script>");
+                w.flush();
+                w.close();
+                return null;
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return "redirect:/board/list";
     }
 
 

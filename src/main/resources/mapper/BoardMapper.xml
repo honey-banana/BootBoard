@@ -90,7 +90,17 @@
     </insert>
 
     <update id="deleteByNo" parameterType="int">
-        UPDATE BOARD SET del_yn = 'Y'
+        UPDATE BOARD SET
+                del_yn = 'Y',
+                del_date = now()
+        WHERE board_no = #{boardNo}
+    </update>
+
+    <update id="update" parameterType="com.projectWG.board.vo.Board">
+        UPDATE BOARD SET
+                board_title = #{boardTitle},
+                contents = #{contents},
+                modi_date = now()
         WHERE board_no = #{boardNo}
     </update>
 
