@@ -60,6 +60,7 @@
 
     <input type="hidden" id="board-no" th:field="*{board.boardNo}" th:value="${board.boardNo}">
     <button type="button" th:onclick="deleteForm()">게시글 삭제</button>
+    <button type="button" th:onclick="editForm()">게시글 수정</button>
 
 </div>
 
@@ -78,6 +79,21 @@
     console.log(boardNo);
     console.log(baseUrl + '/board/delete/' + boardNo);
     location.href = deleteUrl;
+  }
+
+  /**
+   *
+   * @Method editForm
+   * @Author rulethecode9060
+   * @Date 2023.06.04
+   */
+  function editForm() {
+    var boardNo = document.querySelector('#board-no').value; // 게시글 번호
+    var baseUrl = 'http://localhost:8080';
+    var editUrl = baseUrl + '/board/edit/' + boardNo;
+    console.log(boardNo);
+    console.log(baseUrl + '/board/edit/' + boardNo);
+    location.href = editUrl;
   }
   /* ]]*/
 </script>
