@@ -138,9 +138,9 @@ public class BoardController {
 
     /**
      *
-     * @Method readByBoardNo
+     * @Method edit
      * @Author rulethecode9060
-     * @Date 2023.05.30
+     * @Date 2023.06.04
      */
     @PostMapping("/board/edit")
     public String edit(Board board, HttpServletResponse response){
